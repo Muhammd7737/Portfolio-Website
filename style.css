@@ -239,6 +239,7 @@ section {
 /* About */
 #about {
   position: relative;
+  height: 70vh;
 }
 
 .about-containers {
@@ -280,5 +281,66 @@ section {
 .section-container {
   gap: 4rem;
   height: 80%;
+}
+
+/* Skills */
+#skills {
+  height: auto;
+}
+
+.skills-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  max-width: 750px;
+  margin: 3rem auto 0;
+}
+
+.skills-card {
+  background: white;
+  border: rgb(163,163,163) 0.1rem solid;
+  border-radius: 2rem;
+  padding: 1.5rem;
+  min-width: 220px;
+}
+
+.skills-card--full {
+  grid-column: 1 / -1;
+  max-width: 260px;
+  margin: 0 auto;
+}
+
+.skills-card h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.skill-list {
+  list-style: none;
+}
+
+.skill-list img {
+  width: 1.3rem;
+  height: 1.3rem;
+  vertical-align: middle;
+}
+
+.skill-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0;
+  font-size: 1rem;
+}
+
+.skill-list i {
+  font-size: 1.3rem;
+  width: 1.5rem;
+  text-align: center;
+}
+
+.coursework {
+  text-align: center;
+  margin-top: 2.5rem;
 }
 
