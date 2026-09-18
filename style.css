@@ -416,7 +416,9 @@ section {
 
 
 
-/* mediaqueries.css */
+
+
+/* mediaqueries.css for good interface on phone */
 
 @media screen and (max-width: 1200px) {
   section {
@@ -440,7 +442,7 @@ section {
   }
 
   .arrow {
-    display: none; /* it's absolutely positioned off to the right, will overflow on narrow screens */
+    display: none; 
   }
 }
 
@@ -450,7 +452,7 @@ section {
   }
 
   .details-container.color-container {
-    flex: 0 0 85%; /* let cards shrink to fit screen width instead of a fixed 300px */
+    flex: 0 0 85%; 
   }
 
   .menu-links a {
