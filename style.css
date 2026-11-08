@@ -2,6 +2,17 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
+/* The one accent colour used around the site (labels, hover, focus). Change it here */
+:root {
+  --accent: #1D4ED8;
+  --accent-soft: rgba(192, 186, 185, 0.1);
+}
+
+::selection {
+  background: var(--accent);
+  color: white;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -124,8 +135,8 @@ a:hover {
 
 .menu-links a:hover,
 .menu-links a.active {
-  background-color: #f1f3f5;
-  color: #000000;
+  background-color: var(--accent-soft);
+  color: var(--accent);
 }
 
 /* Sections */
@@ -148,7 +159,7 @@ section {
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  min-height: 80vh;
+  min-height: 55vh;
 }
 /*
 .section__pic-container {
@@ -169,6 +180,12 @@ section {
 
 .section__text__p1 {
   text-align: center;
+}
+
+/* the small label above each section title gets the accent colour (not the line in the hero) */
+section:not(#profile) .section__text__p1 {
+  color: var(--accent);
+  font-weight: 500;
 }
 
 .section__text__p2 {
@@ -235,29 +252,71 @@ section {
   border: rgb(255,255,255) 0.1rem solid;
 }
 
+/* the black button turns accent colour on hover */
+.btn-color-1:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
 .btn-container {
   gap: 1rem;
+}
+
+/* Full-screen sections */
+#about,
+#skills,
+#contact {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 7rem;
 }
 
 /* About */
 #about {
   position: relative;
-
-}
-
-.about-containers {
-  gap: 1rem;
-  margin-bottom: 2rem;
-  margin-top: 2rem;
 }
 
 .about-details-container {
-  justify-content: center;
+  display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  margin-top: 2.5rem;
 }
 
-.about-containers, .about-details-container {
+/* Education sits in the middle with no card around it */
+.education {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  text-align: center;
+}
+
+.education h3 {
+  font-size: 1.4rem;
+}
+
+.education .details-text {
+  font-size: 1.05rem;
+}
+
+/* short accent line between education and the about text */
+.education::after {
+  content: "";
+  width: 3rem;
+  height: 3px;
+  margin-top: 1.5rem;
+  border-radius: 3px;
+  background: var(--accent);
+}
+
+.text-container {
+  max-width: 46rem;
+  text-align: center;
+  line-height: 1.8;
 }
 
 .arrow {
@@ -274,6 +333,7 @@ section {
   border: rgb(53,53,53) 0.1rem solid;
   border-color: rgb(163,163,163);
   text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
 }
 
 .details-text {
@@ -291,55 +351,95 @@ section {
   height: auto;
 }
 
-.skills-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  max-width: 750px;
-  margin: 3rem auto 0;
+/* Slider: rows of pills that slide sideways */
+.skills-slider {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 3rem;
+  overflow: hidden;
+  /* soft fade at the left and right edges */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
 }
 
-.skills-card {
-  background: white;
-  border: rgb(163,163,163) 0.1rem solid;
-  border-radius: 2rem;
-  padding: 1.5rem;
-  min-width: 220px;
+/* without JavaScript the pills just wrap and sit in the middle */
+.skills-track {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.skills-card--full {
-  grid-column: 1 / -1;
-  max-width: 260px;
-  margin: 0 auto;
-}
-
-.skills-card h3 {
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-.skill-list {
+.skill-row {
+  display: flex;
+  flex-shrink: 0;
   list-style: none;
 }
 
-.skill-list img {
-  width: 1.3rem;
-  height: 1.3rem;
-  vertical-align: middle;
-}
-
-.skill-list li {
+.skill-row li {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  padding: 0.4rem 0;
-  font-size: 1rem;
+  margin-right: 0.8rem;
+  padding: 0.65rem 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  color: rgb(30, 30, 30);
+  background: white;
+  border: 1px solid rgb(225, 225, 225);
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  transition: border-color 200ms ease, box-shadow 200ms ease;
 }
 
-.skill-list i {
-  font-size: 1.3rem;
-  width: 1.5rem;
-  text-align: center;
+.skill-row li:hover {
+  border-color: var(--accent);
+  box-shadow: 0 6px 18px rgba(200, 67, 42, 0.14);
+}
+
+.skill-row i {
+  font-size: 1.25rem;
+  transition: color 200ms ease;
+}
+
+.skill-row li:hover i {
+  color: var(--accent);
+}
+
+.skill-row img {
+  width: 1.25rem;
+  height: 1.25rem;
+  filter: grayscale(1);
+  transition: filter 200ms ease;
+}
+
+.skill-row li:hover img {
+  filter: none;
+}
+
+/* "sliding" is added by the script at the bottom of index.html.
+   The row is repeated 4 times, so moving by 25% lands exactly on the start again (no jump) */
+.skills-track.sliding {
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  width: max-content;
+  animation: slide-left 45s linear infinite;
+}
+
+.skills-track--reverse.sliding {
+  animation-duration: 52s;
+  animation-direction: reverse;
+}
+
+/* hover over the slider to pause it */
+.skills-slider:hover .skills-track {
+  animation-play-state: paused;
+}
+
+@keyframes slide-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-25%); }
 }
 
 .coursework {
@@ -355,12 +455,12 @@ section {
   align-content: flex-start;
   gap: 2rem;
   justify-content: center;
-  align-items: flex-start;
-  overflow-x: auto;
+  align-items: stretch; /* cards in the same row get the same height */
+  overflow: visible; /* so the hover shadow and scroll animation are not cut off */
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  padding: 1rem;
-  margin-top: 4rem;
+  padding: 7rem 1rem 1rem; /* 7rem on top so the heading clears the nav bar */
+  margin-top: 0;
   height: auto;
   min-height: 0;
 }
@@ -371,52 +471,168 @@ section {
 }
 
 .experience-details-container {
-  flex: 0 0 auto;
+  flex: 1 1 100%;
+  max-width: 900px;
   scroll-snap-align: start;
 }
 
+/* each project is a wide row: screenshot on one side, title and buttons on the other
+   (the 1fr rows above and below the title keep it in the middle) */
 .details-container.color-container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  grid-template-rows: 1fr auto auto 1fr;
+  grid-template-areas:
+    "shot ."
+    "shot title"
+    "shot buttons"
+    "shot .";
+  column-gap: 2.5rem;
   align-items: center;
-  gap: 1.5rem;
-  width: 300px;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
   padding: 1.5rem;
   border: 1px solid rgb(163, 163, 163);
   border-radius: 2rem;
   background: rgb(250, 250, 250);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
 }
 
+/* the 2nd project flips sides (the heading above is the 1st child of the section, so the projects are 2, 3, 4) */
+.experience-details-container:nth-child(odd) .details-container.color-container {
+  grid-template-columns: 1fr 1.6fr;
+  grid-template-areas:
+    ". shot"
+    "title shot"
+    "buttons shot"
+    ". shot";
+}
+
+/* the screenshot is a link to the live demo */
 .article-container {
-  border-radius: 1.5rem;
-  aspect-ratio: 1 / 1;
+  grid-area: shot;
+  position: relative;
+  display: block;
+  color: inherit;
   width: 100%;
   overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid rgb(215, 215, 215);
+  background: white;
+}
+
+/* little browser window bar above the screenshot */
+.browser-bar {
   display: flex;
   align-items: center;
-  justify-content: center;
-  background: rgb(250, 250, 250);
+  gap: 0.3rem;
+  height: 1.5rem;
+  padding: 0 0.7rem;
+  background: rgb(240, 240, 240);
+  border-bottom: 1px solid rgb(215, 215, 215);
+}
+
+.browser-bar span {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: rgb(200, 200, 200);
+}
+
+.browser-bar span:first-child {
+  background: var(--accent);
 }
 
 .project-img {
-  border-radius: 1rem;
+  display: block;
   width: 100%;
-  height: 100%;
-  object-fit: contain;
-  padding: 0rem;
-  box-sizing: border-box;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top; /* shows the top of the landing page */
+  transition: transform 400ms ease;
+}
+
+.details-container.color-container:hover .project-img {
+  transform: scale(1.03);
+}
+
+.article-container:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* "View live demo" label that fades in when you hover the screenshot */
+.shot-label {
+  position: absolute;
+  left: 50%;
+  bottom: 1rem;
+  transform: translate(-50%, 8px);
+  padding: 0.5rem 1.1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: white;
+  background: rgb(0, 0, 0);
+  border-radius: 999px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 250ms ease, transform 250ms ease;
+}
+
+.article-container:hover .shot-label {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 
 .project-title {
-  font-size: 1.5rem;
+  grid-area: title;
+  font-size: 2rem;
   font-weight: 700;
-  text-align: center;
+  line-height: 1.2;
+  text-align: left;
+}
+
+/* small accent number above each title: 01, 02, 03 */
+#projects {
+  counter-reset: project;
+}
+
+.experience-details-container {
+  counter-increment: project;
+}
+
+.project-title::before {
+  content: "0" counter(project);
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--accent);
 }
 
 .btn-container {
   display: flex;
   gap: 1rem;
   justify-content: center;
+}
+
+.details-container.color-container .btn-container {
+  grid-area: buttons;
+  justify-content: flex-start;
+  margin-top: 1.2rem;
+}
+
+.project-btn {
+  width: auto;
+  padding: 0.8rem 1.1rem;
+}
+
+/* Card hover: lifts up a little and the border turns accent colour */
+.details-container.color-container:hover {
+  translate: 0 -4px;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.1);
+  border-color: var(--accent);
 }
 
 #projects::-webkit-scrollbar {
@@ -464,6 +680,7 @@ section {
 
 .form-group {
   flex: 1;
+  min-width: 0; /* lets the Name and Email boxes shrink to fit inside the card */
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -477,13 +694,15 @@ section {
 }
 
 .required {
-  color: #e0684f;
+  color: var(--accent);
 }
 
 .form-group input,
 .form-group textarea {
   font-family: "Poppins", sans-serif;
   font-size: 0.95rem;
+  width: 100%;
+  box-sizing: border-box;
   padding: 0.85rem 1.25rem;
   border: 1px solid rgb(200, 200, 200);
   border-radius: 999px;
@@ -493,15 +712,30 @@ section {
 }
 
 .form-group textarea {
-  border-radius: 1.5rem;
+  border-radius: 1.2rem;
   resize: vertical;
   min-height: 150px;
 }
 
+/* The browser's default drag handle sticks out of the rounded corner.
+   So we hide it and draw our own two little lines inside the corner (the drag still works) */
+@supports selector(::-webkit-resizer) {
+  .form-group textarea {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23999' stroke-width='1.4' stroke-linecap='round'%3E%3Cpath d='M11 4 4 11M11 8 8 11'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.55rem bottom 0.55rem;
+    background-size: 0.75rem;
+  }
+
+  .form-group textarea::-webkit-resizer {
+    background: transparent;
+  }
+}
+
 .form-group input:focus,
 .form-group textarea:focus {
-  border-color: #bcd4fb;
-  box-shadow: 0 0 0 4px rgba(188, 212, 251, 0.35);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
 }
 
 .submit-btn {
@@ -560,17 +794,38 @@ section {
     height: auto;
   }
 
-  .skills-container {
-    grid-template-columns: 1fr;
-    max-width: 100%;
-  }
-
-  .about-containers {
-    flex-direction: column;
+  /* on a phone the sections are only as tall as their content */
+  #about,
+  #skills,
+  #contact {
+    min-height: auto;
+    padding-top: 6rem;
   }
 
   .arrow {
     display: none; 
+  }
+
+  /* projects: screenshot on top, then title and buttons */
+  .details-container.color-container,
+  .experience-details-container:nth-child(odd) .details-container.color-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "shot"
+      "title"
+      "buttons";
+    row-gap: 1.2rem;
+  }
+
+  .project-title {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+
+  .details-container.color-container .btn-container {
+    justify-content: center;
+    margin-top: 0;
   }
 }
 
@@ -613,5 +868,141 @@ section {
   .menu-links a {
     padding: 0.4rem 0.5rem;
     font-size: 0.75rem;
+  }
+}
+
+/* Scroll reveal */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 800ms ease var(--d, 0ms),
+    transform 800ms cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0ms),
+    translate 250ms ease,
+    box-shadow 250ms ease,
+    border-color 250ms ease;
+}
+
+.js .reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* people who turn animations off in their system just see everything */
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skills-track.sliding {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: auto;
+  }
+
+  .skills-track .skill-row[aria-hidden="true"] {
+    display: none;
+  }
+
+  .skills-slider {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+/* Streaks: tall soft bands of light that drift sideways behind the hero */
+.streaks {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1; /* sits behind everything */
+  overflow: hidden;
+  pointer-events: none;
+  /* fades out toward the bottom so there is no hard edge */
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent);
+  mask-image: linear-gradient(to bottom, #000 55%, transparent);
+}
+
+.streak {
+  position: absolute;
+  top: -12%;
+  height: 115%;
+  border-radius: 999px;
+  filter: blur(50px);
+  /* bright at the top, fading to nothing toward the bottom */
+  background: linear-gradient(to bottom, var(--c) 0%, transparent 82%);
+  animation: sway 13s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* each streak has its own colour, position, width and speed */
+.streak-1 {
+  --c: rgba(40, 90, 220, 0.38);
+  left: 6%;
+  width: 13vw;
+}
+
+.streak-2 {
+  --c: rgba(90, 170, 255, 0.5);
+  left: 26%;
+  width: 16vw;
+  animation-duration: 17s;
+  animation-delay: -4s;
+}
+
+.streak-3 {
+  --c: rgba(60, 120, 230, 0.35);
+  left: 47%;
+  width: 12vw;
+  animation-duration: 15s;
+  animation-delay: -8s;
+}
+
+.streak-4 {
+  --c: rgba(120, 215, 255, 0.5);
+  left: 66%;
+  width: 17vw;
+  animation-duration: 19s;
+  animation-delay: -2s;
+}
+
+.streak-5 {
+  --c: rgba(30, 70, 200, 0.28);
+  left: 85%;
+  width: 11vw;
+  animation-duration: 14s;
+  animation-delay: -10s;
+}
+
+@keyframes sway {
+  from { transform: translateX(-4vw) skewX(-6deg) scaleX(1); }
+  to { transform: translateX(5vw) skewX(6deg) scaleX(1.3); }
+}
+
+/* phones: fewer, wider streaks */
+@media screen and (max-width: 600px) {
+  .streak-2,
+  .streak-4 {
+    display: none;
+  }
+
+  .streak-1,
+  .streak-3,
+  .streak-5 {
+    width: 30vw;
+  }
+}
+
+/* people who turn animations off in their system see still streaks */
+@media (prefers-reduced-motion: reduce) {
+  .streak {
+    animation: none;
   }
 }

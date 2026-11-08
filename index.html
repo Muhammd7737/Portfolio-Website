@@ -5,9 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Portfolio</title>
-  <link rel="stylesheet" href="style.css?v=2" />
+  <link rel="stylesheet" href="style.css?v=3" />
   <link rel="stylesheet" href="mediaqueries.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/devicon/2.15.1/devicon.min.css">
+  <!-- adds the "js" class so the scroll animation only runs when JavaScript is on -->
+  <script>document.documentElement.classList.add("js");</script>
 
 </head>
 
@@ -26,6 +28,13 @@
 
   </nav>
 -->
+  <div class="streaks" aria-hidden="true">
+  <span class="streak streak-1"></span>
+  <span class="streak streak-2"></span>
+  <span class="streak streak-3"></span>
+  <span class="streak streak-4"></span>
+  <span class="streak streak-5"></span>
+</div>
   <nav id="hamburger-nav">
     <!--
     <div class="logo">Muhammad Shahid</div>
@@ -54,10 +63,10 @@
     -->
     <div class="section__text">
       <p class="section__text__p1"></p>
-      <h1 class="title">Hello! I'm Muhammad</h1>
-      <p class="section__text__p1">Student | Developer | based in Edmonton, AB</p>
+      <h1 class="title reveal">Hello! I'm Muhammad</h1>
+      <p class="section__text__p1 reveal">Student | Developer | based in Edmonton, AB</p>
 
-      <div class="btn-container">
+      <div class="btn-container reveal">
         <button class="btn btn-color-2" onclick="window.open('./assests/Resume - Muhammad Shahid.pdf')">
           Download CV
         </button>
@@ -68,7 +77,7 @@
 
       </div>
 
-      <div id="socials-container">
+      <div id="socials-container" class="reveal">
         <img src="./assests/linkedin.png" alt="My LinkedIn Profile" class="icon"
           onclick="window.open('https://www.linkedin.com/in/muhammad-umar-shahid-938949345', '_blank')" />
 
@@ -79,8 +88,8 @@
   </section>
 
   <section id="about">
-    <p class="section__text__p1">Get To Know More</p>
-    <h1 class="title">About Me</h1>
+    <p class="section__text__p1 reveal">Get To Know More</p>
+    <h1 class="title reveal">About Me</h1>
 
     <!-- Will add Picture if necessary   
      <div class="section-container">
@@ -91,19 +100,12 @@
       </div>
 -->
     <div class="about-details-container">
-      <div class="about-containers">
-        <div class="details-container">
-          <img src="assests/experience.png" alt="experience icon" class="icon">
-          <h3>Experience</h3>
-          <p class="details-text">Building & shipping full-stack apps <br>Frontend Developer</p>
-        </div>
-        <div class="details-container">
-          <img src="assests/education.png" alt="education icon" class="icon">
-          <h3>Education</h3>
-          <p class="details-text">B.Sc.Computer Science <br>University of Alberta - Current Student</p>
-        </div>
+      <div class="education reveal">
+        <img src="assests/education.png" alt="education icon" class="icon">
+        <h3>Education</h3>
+        <p class="details-text">B.Sc.Computer Science <br>University of Alberta - Current Student</p>
       </div>
-      <div class="text-container">
+      <div class="text-container reveal">
         <p>
           I'm a Computer Science student at the University of Alberta who likes shipping things that actually run in
           production, not just in a local dev environment.
@@ -121,63 +123,43 @@
   </section>
 
   <section id="skills">
-    <p class="section__text__p1">Explore My</p>
-    <h1 class="title">Skills</h1>
+    <p class="section__text__p1 reveal">Explore My</p>
+    <h1 class="title reveal">Skills</h1>
 
-    <div class="skills-container">
-      <div class="skills-card">
-        <h3>Languages</h3>
-        <ul class="skill-list">
-          <li><i class="devicon-python-plain colored"></i> Python</li>
-          <li><i class="devicon-c-plain colored"></i> C</li>
-          <li><i class="devicon-javascript-plain colored"></i> JavaScript</li>
-          <li><i class="devicon-html5-plain colored"></i> HTML/CSS</li>
-          <li><i class="devicon-mysql-plain colored"></i> SQL</li>
-        </ul>
-      </div>
-
-
-      <div class="skills-card">
-        <h3>Libraries</h3>
-        <ul class="skill-list">
-          <li><i class="devicon-pandas-original colored"></i> Pandas</li>
-          <li><i class="devicon-numpy-original colored"></i> NumPy</li>
-          <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/matplotlib/matplotlib-original.svg"
-              alt="Matplotlib"> Matplotlib</li>
-          <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/chartjs/chartjs-original.svg"
-              alt="Chart.js"> Chart.js</li>
-        </ul>
-      </div>
-
-      <div class="skills-card">
-        <h3>Developer Tools</h3>
-        <ul class="skill-list">
-          <li><i class="devicon-github-original"></i> GitHub</li>
-          <li><i class="devicon-git-plain colored"></i> Git</li>
-          <li><i class="devicon-vscode-plain colored"></i> VS Code</li>
-        </ul>
-      </div>
-
-      <div class="skills-card">
-        <h3>Frameworks &amp; Tools</h3>
-        <ul class="skill-list">
-          <li><i class="devicon-react-original colored"></i> React</li>
+    <!-- Skills slider: two rows of pills that slide sideways (the second row goes the other way).
+         To add a skill, just add one <li> to a row. The script at the bottom repeats the row so it loops with no gap -->
+    <div class="skills-slider reveal">
+      <div class="skills-track">
+        <ul class="skill-row">
+          <li><i class="devicon-python-plain"></i> Python</li>
+          <li><i class="devicon-c-plain"></i> C</li>
+          <li><i class="devicon-javascript-plain"></i> JavaScript</li>
+          <li><i class="devicon-html5-plain"></i> HTML/CSS</li>
+          <li><i class="devicon-mysql-plain"></i> SQL</li>
+          <li><i class="devicon-react-original"></i> React</li>
           <li><i class="devicon-flask-original"></i> Flask</li>
           <li><i class="devicon-linux-plain"></i> Linux</li>
         </ul>
       </div>
 
-
-      <div class="skills-card skills-card--full">
-        <h3>Databases</h3>
-        <ul class="skill-list">
-          <li><i class="devicon-postgresql-plain colored"></i> PostgreSQL</li>
-          <li><i class="devicon-sqlite-plain colored"></i> SQLite</li>
+      <div class="skills-track skills-track--reverse">
+        <ul class="skill-row">
+          <li><i class="devicon-postgresql-plain"></i> PostgreSQL</li>
+          <li><i class="devicon-sqlite-plain"></i> SQLite</li>
+          <li><i class="devicon-pandas-original"></i> Pandas</li>
+          <li><i class="devicon-numpy-original"></i> NumPy</li>
+          <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/matplotlib/matplotlib-original.svg"
+              alt="Matplotlib"> Matplotlib</li>
+          <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/chartjs/chartjs-original.svg"
+              alt="Chart.js"> Chart.js</li>
+          <li><i class="devicon-github-original"></i> GitHub</li>
+          <li><i class="devicon-git-plain"></i> Git</li>
+          <li><i class="devicon-vscode-plain"></i> VS Code</li>
         </ul>
       </div>
     </div>
 
-    <div class="coursework">
+    <div class="coursework reveal">
       <h3>Relevant Coursework</h3>
       <p>OOP • Data Structures &amp; Algorithms • Machine Learning • Operating Systems</p>
     </div>
@@ -185,63 +167,58 @@
   </section>
 
   <section id="projects">
-    <div class="projects-heading">
+    <div class="projects-heading reveal">
       <p class="section__text__p1">My Recent</p>
       <h1 class="title">Projects</h1>
     </div>
 
-    <div class="experience-details-container">
+    <div class="experience-details-container reveal">
       <div class="details-container color-container">
-        <div class="article-container">
-          <img src="./assests/Pocketpal.jpeg" alt="Project - 1" class="project-img" />
-        </div>
+        <!-- screenshot of the project's landing page in a small browser window, click it to open the live demo -->
+        <a class="article-container" href="https://pocketpal-yaj9.onrender.com" target="_blank" rel="noopener">
+          <div class="browser-bar"><span></span><span></span><span></span></div>
+          <img src="./assests/Pocketpal.jpeg" alt="PocketPal landing page" class="project-img" />
+          <span class="shot-label">View live demo</span>
+        </a>
         <h2 class="experience-sub-title project-title">PocketPal</h2>
         <div class="btn-container">
           <button class="btn btn-color-2 project-btn"
             onclick="window.open('https://github.com/Muhammd7737/PocketPal', '_blank')">
             GitHub
           </button>
-          <button class="btn btn-color-2 project-btn"
-            onclick="window.open('https://pocketpal-yaj9.onrender.com', '_blank')">
-            Live Demo
-          </button>
         </div>
       </div>
     </div>
 
-    <div class="experience-details-container">
+    <div class="experience-details-container reveal">
       <div class="details-container color-container">
-        <div class="article-container">
-          <img src="./assests/Ledger.jpeg" alt="Project - 2" class="project-img" />
-        </div>
+        <a class="article-container" href="https://ledger-i9ew.onrender.com" target="_blank" rel="noopener">
+          <div class="browser-bar"><span></span><span></span><span></span></div>
+          <img src="./assests/Ledger.jpeg" alt="Ledger landing page" class="project-img" />
+          <span class="shot-label">View live demo</span>
+        </a>
         <h2 class="experience-sub-title project-title">Ledger</h2>
         <div class="btn-container">
           <button class="btn btn-color-2 project-btn"
             onclick="window.open('https://github.com/Muhammd7737/Ledger', '_blank')">
             GitHub
           </button>
-          <button class="btn btn-color-2 project-btn"
-            onclick="window.open('https://ledger-i9ew.onrender.com', '_blank')">
-            Live Demo
-          </button>
         </div>
       </div>
     </div>
 
-    <div class="experience-details-container">
+    <div class="experience-details-container reveal">
       <div class="details-container color-container">
-        <div class="article-container">
-          <img src="./assests/Chatbot.jpeg" alt="Project - 3" class="project-img" />
-        </div>
+        <a class="article-container" href="https://ask-ai-assitant.onrender.com" target="_blank" rel="noopener">
+          <div class="browser-bar"><span></span><span></span><span></span></div>
+          <img src="./assests/Chatbot.jpeg" alt="PocketPal AI Assistant landing page" class="project-img" />
+          <span class="shot-label">View live demo</span>
+        </a>
         <h2 class="experience-sub-title project-title">PocketPal AI Assistant</h2>
         <div class="btn-container">
           <button class="btn btn-color-2 project-btn"
             onclick="window.open('https://github.com/Muhammd7737/Ask-Ai-Assistant', '_blank')">
             GitHub
-          </button>
-          <button class="btn btn-color-2 project-btn"
-            onclick="window.open('https://ask-ai-assitant.onrender.com', '_blank')">
-            Live Demo
           </button>
         </div>
       </div>
@@ -249,7 +226,7 @@
   </section>
 
   <section id="contact">
-    <div class="contact-heading">
+    <div class="contact-heading reveal">
       <p class="section__text__p1">Let's Connect</p>
       <h1 class="title">Get In Touch</h1>
     </div>
@@ -257,7 +234,7 @@
     <form class="contact-form" id="contact-form" action="https://formspree.io/f/mzezegee" method="POST">
       <input type="hidden" name="_next" value="https://yoursite.com/#contact" />
 
-      <div class="form-card">
+      <div class="form-card reveal">
         <div class="form-row">
           <div class="form-group">
             <label for="name">Name</label>
@@ -294,6 +271,51 @@
   </section>
 
   <script src="script.js"></script>
+
+  <script>
+    // Scroll reveal: things fade in and rise as they come into view
+    (function () {
+      const items = Array.from(document.querySelectorAll(".reveal"));
+
+      // small delay between neighbours so they appear one after another
+      const counts = new Map();
+      items.forEach(function (el) {
+        const i = counts.get(el.parentElement) || 0;
+        counts.set(el.parentElement, i + 1);
+        el.style.setProperty("--d", Math.min(i, 8) * 90 + "ms");
+      });
+
+      // old browsers: just show everything
+      if (!("IntersectionObserver" in window)) {
+        items.forEach(function (el) { el.classList.add("in"); });
+        return;
+      }
+
+      const io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in");
+            io.unobserve(entry.target); // only animate once
+          }
+        });
+      }, { threshold: 0.15, rootMargin: "0px 0px -6% 0px" });
+
+      items.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
+
+  <script>
+    // Skills slider: repeat each row 4 times in total so it can slide forever without a gap
+    document.querySelectorAll(".skills-track").forEach(function (track) {
+      const row = track.querySelector(".skill-row");
+      for (let i = 0; i < 3; i++) {
+        const copy = row.cloneNode(true);
+        copy.setAttribute("aria-hidden", "true"); // screen readers only read the first one
+        track.appendChild(copy);
+      }
+      track.classList.add("sliding");
+    });
+  </script>
 
 </body>
 
