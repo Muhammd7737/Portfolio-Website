@@ -5,7 +5,7 @@
 /* The one accent colour used around the site (labels, hover, focus). Change it here */
 :root {
   --accent: #1D4ED8;
-  --accent-soft: rgba(192, 186, 185, 0.1);
+  --accent-soft: rgba(29, 78, 216, 0.08);
 }
 
 ::selection {
@@ -395,7 +395,7 @@ section:not(#profile) .section__text__p1 {
 
 .skill-row li:hover {
   border-color: var(--accent);
-  box-shadow: 0 6px 18px rgba(200, 67, 42, 0.14);
+  box-shadow: 0 6px 18px rgba(29, 78, 216, 0.14);
 }
 
 .skill-row i {
@@ -470,26 +470,29 @@ section:not(#profile) .section__text__p1 {
   text-align: center;
 }
 
+/* no max-width here, so each project takes a full row (the card below is what limits the width) */
 .experience-details-container {
   flex: 1 1 100%;
-  max-width: 900px;
   scroll-snap-align: start;
 }
 
-/* each project is a wide row: screenshot on one side, title and buttons on the other
-   (the 1fr rows above and below the title keep it in the middle) */
+/* each project is a wide row: screenshot on one side, title, description and buttons on the other
+   (the 1fr rows above and below keep the text in the middle) */
 .details-container.color-container {
   display: grid;
   grid-template-columns: 1.6fr 1fr;
-  grid-template-rows: 1fr auto auto 1fr;
+  grid-template-rows: 1fr auto auto auto 1fr;
   grid-template-areas:
     "shot ."
     "shot title"
+    "shot desc"
     "shot buttons"
     "shot .";
   column-gap: 2.5rem;
   align-items: center;
   width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
   height: 100%;
   box-sizing: border-box;
   padding: 1.5rem;
@@ -505,6 +508,7 @@ section:not(#profile) .section__text__p1 {
   grid-template-areas:
     ". shot"
     "title shot"
+    "desc shot"
     "buttons shot"
     ". shot";
 }
@@ -593,22 +597,14 @@ section:not(#profile) .section__text__p1 {
   text-align: left;
 }
 
-/* small accent number above each title: 01, 02, 03 */
-#projects {
-  counter-reset: project;
-}
-
-.experience-details-container {
-  counter-increment: project;
-}
-
-.project-title::before {
-  content: "0" counter(project);
-  display: block;
-  margin-bottom: 0.3rem;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--accent);
+/* one plain sentence under the title: what the project does */
+.project-desc {
+  grid-area: desc;
+  margin-top: 0.7rem;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  text-align: left;
+  color: rgb(85, 85, 85);
 }
 
 .btn-container {
@@ -806,7 +802,7 @@ section:not(#profile) .section__text__p1 {
     display: none; 
   }
 
-  /* projects: screenshot on top, then title and buttons */
+  /* projects: screenshot on top, then title, description and buttons */
   .details-container.color-container,
   .experience-details-container:nth-child(odd) .details-container.color-container {
     grid-template-columns: 1fr;
@@ -814,12 +810,18 @@ section:not(#profile) .section__text__p1 {
     grid-template-areas:
       "shot"
       "title"
+      "desc"
       "buttons";
     row-gap: 1.2rem;
   }
 
   .project-title {
     font-size: 1.6rem;
+    text-align: center;
+  }
+
+  .project-desc {
+    margin-top: 0;
     text-align: center;
   }
 
