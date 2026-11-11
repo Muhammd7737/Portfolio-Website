@@ -63,7 +63,7 @@ nav {
 a {
   color: black;
   text-decoration: none;
-  text-decoration-color: white;
+  text-decoration-color: #F3F4F6;
 }
 
 a:hover {
@@ -506,7 +506,7 @@ section:not(#profile) .section__text__p1 {
   padding: 1.5rem;
   border: 1px solid rgb(163, 163, 163);
   border-radius: 2rem;
-  background: #ffffff; /* white cards stand out from the off-white page */
+  background: #F3F4F6; /* white cards stand out from the off-white page */
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
 }
 
@@ -667,7 +667,7 @@ section:not(#profile) .section__text__p1 {
 }
 
 .form-card {
-  background: #ffffff; /* white cards stand out from the off-white page */
+  background: #F3F4F6; /* white cards stand out from the off-white page */
   border: 1px solid rgb(163, 163, 163);
   border-radius: 2rem;
   padding: 2.5rem;
