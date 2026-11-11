@@ -28,12 +28,7 @@
 
   </nav>
 -->
-  <div class="streaks" aria-hidden="true">
-  <span class="streak streak-1"></span>
-  <span class="streak streak-2"></span>
-  <span class="streak streak-3"></span>
-  <span class="streak streak-4"></span>
-  <span class="streak streak-5"></span>
+
 </div>
   <nav id="hamburger-nav">
     <!--
@@ -316,6 +311,41 @@
       track.classList.add("sliding");
     });
   </script>
+
+  <script>
+  // Nav bar: the link for the section you are on gets shaded as you scroll
+  (function () {
+    const links = Array.from(document.querySelectorAll(".menu-links a"));
+
+    // match each link to its section, e.g. "about" -> the About link
+    const byId = {};
+    links.forEach(function (a) { byId[a.getAttribute("href").slice(1)] = a; });
+
+    // give "active" to one link and take it off the others
+    function mark(id) {
+      links.forEach(function (a) { a.classList.toggle("active", a === byId[id]); });
+    }
+
+    // watch each section, and mark it when it crosses a thin line near the middle of the screen
+    const spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) mark(entry.target.id);
+      });
+    }, { rootMargin: "-40% 0px -55% 0px" });
+
+    Object.keys(byId).forEach(function (id) {
+      const section = document.getElementById(id);
+      if (section) spy.observe(section);
+    });
+
+    // at the very bottom of the page, the last link (Contact) counts
+    window.addEventListener("scroll", function () {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 4) {
+        mark(links[links.length - 1].getAttribute("href").slice(1));
+      }
+    });
+  })();
+</script>
 
 </body>
 

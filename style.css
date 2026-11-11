@@ -6,6 +6,7 @@
 :root {
   --accent: #1D4ED8;
   --accent-soft: rgba(29, 78, 216, 0.08);
+  --bg: #F3F4F6; /* page background: a soft off-white instead of pure white. Change it here */
 }
 
 ::selection {
@@ -22,6 +23,7 @@
 body {
   font-family: "Poppins", sans-serif;
   padding-top: 10vh;
+  background: var(--bg);
 }
 
 html { /* smooth scrolling in the website */
@@ -136,6 +138,12 @@ a:hover {
 .menu-links a:hover,
 .menu-links a.active {
   background-color: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* the link for the section you are on (the script adds "active" as you scroll) */
+.menu-links a.active {
+  background-color: rgba(29, 78, 216, 0.12);
   color: var(--accent);
 }
 
@@ -498,7 +506,7 @@ section:not(#profile) .section__text__p1 {
   padding: 1.5rem;
   border: 1px solid rgb(163, 163, 163);
   border-radius: 2rem;
-  background: rgb(250, 250, 250);
+  background: #ffffff; /* white cards stand out from the off-white page */
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
 }
 
@@ -659,7 +667,7 @@ section:not(#profile) .section__text__p1 {
 }
 
 .form-card {
-  background: rgb(250, 250, 250);
+  background: #ffffff; /* white cards stand out from the off-white page */
   border: 1px solid rgb(163, 163, 163);
   border-radius: 2rem;
   padding: 2.5rem;
@@ -914,97 +922,5 @@ section:not(#profile) .section__text__p1 {
   .skills-slider {
     -webkit-mask-image: none;
     mask-image: none;
-  }
-}
-
-/* Streaks: tall soft bands of light that drift sideways behind the hero */
-.streaks {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: -1; /* sits behind everything */
-  overflow: hidden;
-  pointer-events: none;
-  /* fades out toward the bottom so there is no hard edge */
-  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent);
-  mask-image: linear-gradient(to bottom, #000 55%, transparent);
-}
-
-.streak {
-  position: absolute;
-  top: -12%;
-  height: 115%;
-  border-radius: 999px;
-  filter: blur(50px);
-  /* bright at the top, fading to nothing toward the bottom */
-  background: linear-gradient(to bottom, var(--c) 0%, transparent 82%);
-  animation: sway 13s ease-in-out infinite alternate;
-  will-change: transform;
-}
-
-/* each streak has its own colour, position, width and speed */
-.streak-1 {
-  --c: rgba(40, 90, 220, 0.38);
-  left: 6%;
-  width: 13vw;
-}
-
-.streak-2 {
-  --c: rgba(90, 170, 255, 0.5);
-  left: 26%;
-  width: 16vw;
-  animation-duration: 17s;
-  animation-delay: -4s;
-}
-
-.streak-3 {
-  --c: rgba(60, 120, 230, 0.35);
-  left: 47%;
-  width: 12vw;
-  animation-duration: 15s;
-  animation-delay: -8s;
-}
-
-.streak-4 {
-  --c: rgba(120, 215, 255, 0.5);
-  left: 66%;
-  width: 17vw;
-  animation-duration: 19s;
-  animation-delay: -2s;
-}
-
-.streak-5 {
-  --c: rgba(30, 70, 200, 0.28);
-  left: 85%;
-  width: 11vw;
-  animation-duration: 14s;
-  animation-delay: -10s;
-}
-
-@keyframes sway {
-  from { transform: translateX(-4vw) skewX(-6deg) scaleX(1); }
-  to { transform: translateX(5vw) skewX(6deg) scaleX(1.3); }
-}
-
-/* phones: fewer, wider streaks */
-@media screen and (max-width: 600px) {
-  .streak-2,
-  .streak-4 {
-    display: none;
-  }
-
-  .streak-1,
-  .streak-3,
-  .streak-5 {
-    width: 30vw;
-  }
-}
-
-/* people who turn animations off in their system see still streaks */
-@media (prefers-reduced-motion: reduce) {
-  .streak {
-    animation: none;
   }
 }
